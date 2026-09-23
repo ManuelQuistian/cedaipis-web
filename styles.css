@@ -127,21 +127,26 @@ main {
 
 /* MASCOTA LEÓN FLOTANTE PNG TRANSPARENTE */
 .mascota-leon {
-    position: fixed;
-    left: 20px;
-    bottom: 20px;
-    width: 180px;
-    z-index: 900;
-    background: transparent;
-    pointer-events: none;
+  position: fixed;
+  bottom: 0;
+  left: 20px;
+  z-index: 1000;
+  pointer-events: none; /* Permite hacer clic en los botones que queden detrás */
 }
 
 .mascota-leon img {
-    width: 100%;
-    height: auto;
-    display: block;
-    background: transparent;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+  width: 50px; /* Tamaño ideal para que se aprecie completo sin estorbar */
+  max-height: 150px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Ajuste para pantallas pequeñas / celulares */
+@media (max-width: 900px) {
+  .mascota-leon img {
+    width: 10px; /* Se reduce un poco en móviles para no tapar la pantalla */
+  }
 }
 
 /* HERO SECTION */

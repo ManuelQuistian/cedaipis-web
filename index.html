@@ -66,9 +66,11 @@
             color: var(--blanco);
         }
 
-        .logo-icon {
-            font-size: 2rem;
-            color: #f59e0b;
+        /* ESTILO PARA TU ESCUDO EN IMAGEN */
+        .logo-escudo {
+            width: 45px;
+            height: auto;
+            object-fit: contain;
         }
 
         .logo-texto h1 { font-size: 1.1rem; font-weight: 700; line-height: 1.1; }
@@ -476,7 +478,9 @@
     <!-- BARRA NAVEGACIÓN -->
     <header>
         <a href="#" class="logo-container" onclick="cambiarTab('inicio')">
-            <i class="fa-solid fa-shield-cat logo-icon"></i>
+            <!-- RUTA CONFIGURADA CON TU ARCHIVO EXACTO -->
+            <img src="IMAGENES/Escudo PNG.png" alt="Escudo CEDAIPIS" class="logo-escudo">
+            
             <div class="logo-texto">
                 <h1>CEDAIPIS México</h1>
                 <span>Business School</span>
@@ -496,9 +500,9 @@
         </a>
     </header>
 
-    <!-- MASCOTA LEÓN FLOTANTE (PNG CON ENLACE DIRECTO) -->
+    <!-- MASCOTA LEÓN FLOTANTE -->
     <div class="mascota-leon">
-        <img src="https://i.ibb.co/TM1Lvz5y/leon.png" alt="Mascota León CEDAIPIS">
+        <img src="IMAGENES/LEON.png" alt="Mascota León CEDAIPIS">
     </div>
 
     <main>
@@ -696,7 +700,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <i class="fa-solid fa-shield-cat"></i>
+                <!-- RUTA CONFIGURADA CON TU ARCHIVO EXACTO EN PIE DE PÁGINA -->
+                <img src="IMAGENES/Escudo PNG.png" alt="Escudo CEDAIPIS" class="logo-escudo" style="width: 30px;">
                 <span>CEDAIPIS México - Centro Educativo y Tecnológico</span>
             </div>
 
