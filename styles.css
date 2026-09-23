@@ -39,7 +39,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .logo-container {
@@ -125,28 +125,21 @@ main {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* MASCOTA LEÓN FLOTANTE PNG TRANSPARENTE */
+/* MASCOTA LEÓN FLOTANTE */
 .mascota-leon {
-  position: fixed;
-  bottom: 0;
-  left: 20px;
-  z-index: 1000;
-  pointer-events: none; /* Permite hacer clic en los botones que queden detrás */
+    position: fixed;
+    bottom: 0;
+    left: 20px;
+    z-index: 1000;
+    pointer-events: none;
 }
 
 .mascota-leon img {
-  width: 50px; /* Tamaño ideal para que se aprecie completo sin estorbar */
-  max-height: 150px;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-/* Ajuste para pantallas pequeñas / celulares */
-@media (max-width: 900px) {
-  .mascota-leon img {
-    width: 10px; /* Se reduce un poco en móviles para no tapar la pantalla */
-  }
+    width: 120px;
+    max-height: 150px;
+    height: auto;
+    object-fit: contain;
+    display: block;
 }
 
 /* HERO SECTION */
@@ -212,7 +205,7 @@ main {
     width: 100%;
     max-width: 420px;
     border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* CONTAINER GENERAL */
@@ -263,6 +256,12 @@ main {
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    transition: var(--transicion);
+}
+
+.card-curso:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .badge-insignia {
@@ -318,8 +317,9 @@ main {
 }
 
 .btn-card.cyan { background-color: var(--cyan-btn); color: var(--azul-header); }
+.btn-card.cyan:hover { background-color: var(--cyan-hover); }
 
-/* SECCIONES INFERIORES: ALIANZAS Y TESTIMONIOS */
+/* SECCIONES INFERIORES: ALIANZAS Y TESTIMONIOS (CORREGIDO Y MEJORADO) */
 .bottom-sections {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -333,6 +333,8 @@ main {
     border-radius: var(--radio-borde);
     box-shadow: var(--sombra-card);
     border: 1px solid #e2e8f0;
+    overflow: hidden;
+    position: relative;
 }
 
 .block-box h4 {
@@ -341,20 +343,85 @@ main {
     margin-bottom: 20px;
 }
 
-.alianzas-logos {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    opacity: 0.6;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #64748b;
+/* CARRUSEL INFINITO DE MARCAS / ALIANZAS */
+.slider-marcas {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
 }
 
-.testimonios-slider {
-    font-size: 0.85rem;
+.slider-track {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    width: max-content;
+    animation: scrollInfinito 16s linear infinite;
+}
+
+.slider-track:hover {
+    animation-play-state: paused;
+}
+
+.marca-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #64748b;
+    transition: var(--transicion);
+    cursor: pointer;
+}
+
+.marca-item i {
+    font-size: 1.6rem;
+    color: var(--azul-header);
+}
+
+.marca-item:hover {
+    color: var(--cyan-hover);
+    transform: scale(1.08);
+}
+
+@keyframes scrollInfinito {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* CARRUSEL ANIMADO DE TESTIMONIOS */
+.testimonio-wrapper {
+    position: relative;
+    min-height: 75px;
+}
+
+.testimonio-slide {
+    display: none;
+    opacity: 0;
+    font-size: 0.88rem;
     color: var(--texto-suave);
     font-style: italic;
+    transition: opacity 0.4s ease;
+}
+
+.testimonio-slide.active {
+    display: block;
+    opacity: 1;
+    animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideIn {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.testimonio-slide strong {
+    color: var(--azul-header);
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
 }
 
 /* CONTACTO */
@@ -382,6 +449,11 @@ main {
     border: 1px solid #cbd5e1;
     font-size: 0.9rem;
     outline: none;
+    transition: var(--transicion);
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: var(--cyan-btn);
 }
 
 .form-group textarea { height: 100px; resize: none; }
@@ -395,6 +467,11 @@ main {
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
+    transition: var(--transicion);
+}
+
+.btn-enviar-contacto:hover {
+    background-color: var(--cyan-hover);
 }
 
 .info-contacto-item {
@@ -451,6 +528,7 @@ footer {
 
 .footer-socials { display: flex; gap: 15px; font-size: 1.1rem; color: var(--azul-header); }
 
+/* MEDIA QUERIES (RESPONSIVE) */
 @media (max-width: 900px) {
     .mascota-leon { display: none; }
     .container-seccion, .hero { padding-left: 5%; }
