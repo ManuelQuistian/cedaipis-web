@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEDAIPIS México Business School</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --azul-header: #0d2137;
+            --azul-hero: #112d4e;
+            --cyan-btn: #00d2d3;
+            --cyan-hover: #00bec0;
+            --fondo-gris: #f0f4f8;
+            --blanco: #ffffff;
+            --texto-oscuro: #1e293b;
+            --texto-suave: #64748b;
+            --borde-tarjeta: #cbd5e1;
+            --sombra-card: 0 10px 25px rgba(0, 0, 0, 0.05);
+            --radio-borde: 16px;
+            --transicion: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--fondo-gris);
+            color: var(--texto-oscuro);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER & NAV */
+        header {
+            background-color: var(--azul-header);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--blanco);
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: #f59e0b;
+        }
+
+        .logo-texto h1 { font-size: 1.1rem; font-weight: 700; line-height: 1.1; }
+        .logo-texto span { font-size: 0.75rem; color: #94a3b8; font-weight: 400; }
+
+        nav { display: flex; align-items: center; gap: 20px; }
+
+        .nav-link {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transicion);
+            cursor: pointer;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.activo {
+            color: var(--cyan-btn);
+        }
+
+        .nav-link.activo::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--cyan-btn);
+            border-radius: 2px;
+        }
+
+        .btn-ingresar-header {
+            background-color: var(--cyan-btn);
+            color: var(--azul-header);
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            transition: var(--transicion);
+        }
+
+        .btn-ingresar-header:hover {
+            background-color: var(--cyan-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 210, 211, 0.3);
+        }
+
+        /* MAIN CONTENT AREA */
+        main {
+            flex: 1;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.activo {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* MASCOTA LEÓN FLOTANTE PNG TRANSPARENTE */
+        .mascota-leon {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            width: 180px;
+            z-index: 900;
+            background: transparent;
+            pointer-events: none;
+        }
+
+        .mascota-leon img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: transparent;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #0d2137 0%, #112d4e 100%);
+            color: var(--blanco);
+            padding: 60px 8% 80px 220px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-texto {
+            max-width: 550px;
+        }
+
+        .hero-texto h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero-texto p {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background-color: var(--azul-header);
+            color: var(--blanco);
+            border: 1px solid #1e293b;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transicion);
+        }
+
+        .btn-primary:hover { background-color: #1e293b; }
+
+        .btn-secondary {
+            background-color: var(--cyan-btn);
+            color: var(--azul-header);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transicion);
+        }
+
+        .btn-secondary:hover { background-color: var(--cyan-hover); }
+
+        .hero-imagen img {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* CONTAINER GENERAL */
+        .container-seccion {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 40px 220px;
+        }
+
+        .sub-header-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .pill-tab {
+            background: var(--blanco);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--texto-oscuro);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--sombra-card);
+            border: 1px solid #e2e8f0;
+        }
+
+        .pill-tab i { color: #0284c7; }
+
+        /* CARDS GRID */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card-curso {
+            background: var(--blanco);
+            border-radius: var(--radio-borde);
+            padding: 20px;
+            box-shadow: var(--sombra-card);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .badge-insignia {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #10b981;
+            color: white;
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: #0284c7;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .card-curso h4 {
+            font-size: 1.1rem;
+            color: var(--azul-header);
+            margin-bottom: 8px;
+        }
+
+        .card-curso p {
+            font-size: 0.8rem;
+            color: var(--texto-suave);
+            margin-bottom: 15px;
+        }
+
+        .card-meta {
+            font-size: 0.75rem;
+            color: var(--texto-suave);
+            margin-bottom: 15px;
+        }
+
+        .btn-card {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            background-color: var(--azul-header);
+            color: white;
+            transition: var(--transicion);
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .btn-card.cyan { background-color: var(--cyan-btn); color: var(--azul-header); }
+
+        /* SECCIONES INFERIORES: ALIANZAS Y TESTIMONIOS */
+        .bottom-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .block-box {
+            background: var(--blanco);
+            padding: 25px;
+            border-radius: var(--radio-borde);
+            box-shadow: var(--sombra-card);
+            border: 1px solid #e2e8f0;
+        }
+
+        .block-box h4 {
+            font-size: 1.05rem;
+            color: var(--azul-header);
+            margin-bottom: 20px;
+        }
+
+        .alianzas-logos {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            opacity: 0.6;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+
+        .testimonios-slider {
+            font-size: 0.85rem;
+            color: var(--texto-suave);
+            font-style: italic;
+        }
+
+        /* CONTACTO */
+        .grid-contacto {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .form-group textarea { height: 100px; resize: none; }
+
+        .btn-enviar-contacto {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--cyan-btn);
+            color: var(--azul-header);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .info-contacto-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--texto-suave);
+        }
+
+        .info-contacto-item i { color: #0284c7; }
+
+        .mapa-box {
+            width: 100%;
+            height: 180px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 25px 5%;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.8rem;
+            color: var(--texto-suave);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--azul-header);
+        }
+
+        .footer-socials { display: flex; gap: 15px; font-size: 1.1rem; color: var(--azul-header); }
+
+        @media (max-width: 900px) {
+            .mascota-leon { display: none; }
+            .container-seccion, .hero { padding-left: 5%; }
+            .hero { flex-direction: column; text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .bottom-sections, .grid-contacto { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA NAVEGACIÓN -->
+    <header>
+        <a href="#" class="logo-container" onclick="cambiarTab('inicio')">
+            <i class="fa-solid fa-shield-cat logo-icon"></i>
+            <div class="logo-texto">
+                <h1>CEDAIPIS México</h1>
+                <span>Business School</span>
+            </div>
+        </a>
+
+        <nav>
+            <span class="nav-link activo" id="link-inicio" onclick="cambiarTab('inicio')">Inicio</span>
+            <span class="nav-link" id="link-oferta" onclick="cambiarTab('oferta')">Oferta Educativa</span>
+            <span class="nav-link" id="link-contacto" onclick="cambiarTab('contacto')">Contáctanos</span>
+            <span class="nav-link" id="link-nosotros" onclick="cambiarTab('nosotros')">Nosotros</span>
+            <span class="nav-link" id="link-blog" onclick="cambiarTab('blog')">Blog</span>
+        </nav>
+
+        <a href="https://campus.cedaipis.com/login/index.php" target="_blank" class="btn-ingresar-header">
+            Ingresar a Clase
+        </a>
+    </header>
+
+    <!-- MASCOTA LEÓN FLOTANTE (PNG CON ENLACE DIRECTO) -->
+    <div class="mascota-leon">
+        <img src="https://i.ibb.co/TM1Lvz5y/leon.png" alt="Mascota León CEDAIPIS">
+    </div>
+
+    <main>
+
+        <!-- TAB 1: INICIO -->
+        <div id="tab-inicio" class="tab-content activo">
+            <section class="hero">
+                <div class="hero-texto">
+                    <h2>Diseña tu futuro profesional con el respaldo de CEDAIPIS</h2>
+                    <p>Centro Educativo y Tecnológico. La mejor educación en línea para tu futuro.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary" onclick="cambiarTab('contacto')">Inscribirse Ahora</button>
+                        <button class="btn-secondary" onclick="cambiarTab('oferta')">Conocer Más</button>
+                    </div>
+                </div>
+                <div class="hero-imagen">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=80" alt="Estudiantes CEDAIPIS">
+                </div>
+            </section>
+
+            <div class="container-seccion">
+                <div class="grid-cards">
+                    <div class="card-curso">
+                        <div class="card-icon"><i class="fa-solid fa-child-reaching"></i></div>
+                        <h4>Primaria</h4>
+                        <p>Educación básica integral con metodología interactiva.</p>
+                        <button class="btn-card" onclick="cambiarTab('oferta')">Explorar</button>
+                    </div>
+
+                    <div class="card-curso">
+                        <div class="card-icon"><i class="fa-solid fa-users-between-lines"></i></div>
+                        <h4>Secundaria</h4>
+                        <p>Formación secundaria enfocada en habilidades digitales.</p>
+                        <button class="btn-card" onclick="cambiarTab('oferta')">Explorar</button>
+                    </div>
+
+                    <div class="card-curso">
+                        <div class="card-icon"><i class="fa-solid fa-file-excel"></i></div>
+                        <h4>Excel</h4>
+                        <p>Aprende desde nivel básico hasta fórmulas avanzadas y tablas dinámicas.</p>
+                        <button class="btn-card cyan" onclick="cambiarTab('oferta')">Ver Cursos</button>
+                    </div>
+
+                    <div class="card-curso">
+                        <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                        <h4>Programación</h4>
+                        <p>Desarrollo web desde cero con HTML, CSS, JavaScript y bases de datos.</p>
+                        <button class="btn-card cyan" onclick="cambiarTab('oferta')">Ver Cursos</button>
+                    </div>
+                </div>
+
+                <div class="bottom-sections">
+                    <div class="block-box">
+                        <h4>Nuestras Alianzas</h4>
+                        <div class="alianzas-logos">
+                            <span><i class="fa-brands fa-microsoft"></i> Microsoft</span>
+                            <span>Roinox</span>
+                            <span><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+                        </div>
+                    </div>
+
+                    <div class="block-box">
+                        <h4>Testimonios</h4>
+                        <div class="testimonios-slider">
+                            <p>"Con la educación en línea de CEDAIPIS logré actualizar mis conocimientos sin descuidar mi trabajo."</p>
+                            <br>
+                            <strong>- José Martínez</strong> <small>(Egresado)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: OFERTA EDUCATIVA -->
+        <div id="tab-oferta" class="tab-content">
+            <div class="container-seccion">
+                <div class="sub-header-tabs">
+                    <div class="pill-tab"><i class="fa-solid fa-graduation-cap"></i> Primaria</div>
+                    <div class="pill-tab"><i class="fa-solid fa-school"></i> Secundaria</div>
+                    <div class="pill-tab"><i class="fa-solid fa-file-excel"></i> Cursos de Excel</div>
+                    <div class="pill-tab"><i class="fa-solid fa-code"></i> Programación</div>
+                </div>
+
+                <div class="grid-cards">
+                    <div class="card-curso">
+                        <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
+                        <h4>Matemáticas Divertidas</h4>
+                        <p>Aprende cálculo mental de forma interactiva y lúdica.</p>
+                        <div class="card-meta">20 cursos enrollados</div>
+                        <a href="https://campus.cedaipis.com/login/index.php" target="_blank" class="btn-card">Inscribirse</a>
+                    </div>
+
+                    <div class="card-curso">
+                        <div class="card-icon"><i class="fa-solid fa-landmark"></i></div>
+                        <h4>Historia Universal</h4>
+                        <p>Un viaje interactivo por las principales eras de la humanidad.</p>
+                        <div class="card-meta">20 cursos enrollados</div>
+                        <a href="https://campus.cedaipis.com/login/index.php" target="_blank" class="btn-card">Inscribirse</a>
+                    </div>
+
+                    <div class="card-curso">
+                        <span class="badge-insignia">Insignia Excel</span>
+                        <div class="card-icon" style="color: #10b981;"><i class="fa-solid fa-chart-line"></i></div>
+                        <h4>Excel Avanzado para Finanzas</h4>
+                        <p>Modelos financieros, macros y análisis de datos en Excel.</p>
+                        <div class="card-meta">27 cursos enrollados</div>
+                        <a href="https://campus.cedaipis.com/login/index.php" target="_blank" class="btn-card cyan">Enroll</a>
+                    </div>
+
+                    <div class="card-curso">
+                        <span class="badge-insignia">Insignia Programación</span>
+                        <div class="card-icon" style="color: #0284c7;"><i class="fa-solid fa-layer-group"></i></div>
+                        <h4>Desarrollo Web Full-Stack</h4>
+                        <p>Programación moderna e interactiva para la creación de software.</p>
+                        <div class="card-meta">10 cursos enrollados</div>
+                        <a href="https://campus.cedaipis.com/login/index.php" target="_blank" class="btn-card cyan">Enroll</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: CONTACTO -->
+        <div id="tab-contacto" class="tab-content">
+            <div class="container-seccion">
+                <div class="grid-contacto">
+                    <div class="block-box">
+                        <h4>Envíanos un Mensaje</h4>
+                        <form onsubmit="event.preventDefault(); alert('Mensaje enviado correctamente.');">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" placeholder="Tu nombre completo" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Correo Electrónico</label>
+                                <input type="email" placeholder="correo@ejemplo.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Asunto</label>
+                                <input type="text" placeholder="Motivo de tu mensaje" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Mensaje</label>
+                                <textarea placeholder="¿En qué te podemos ayudar?"></textarea>
+                            </div>
+                            <button type="submit" class="btn-enviar-contacto">Enviar Mensaje</button>
+                        </form>
+                    </div>
+
+                    <div class="block-box">
+                        <h4>Ubicación y Contacto</h4>
+                        <div class="mapa-box">
+                            <i class="fa-solid fa-map-location-dot" style="font-size: 2rem; margin-right: 10px;"></i>
+                            Mapa de Saltillo, Coahuila
+                        </div>
+                        <div class="info-contacto-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>Teléfono: +52 (844) XXX-XXXX</span>
+                        </div>
+                        <div class="info-contacto-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>Correo: contacto@cedaipis.com</span>
+                        </div>
+                        <div class="info-contacto-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Horario: Lunes - Viernes, 9am - 6pm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB NOSOTROS -->
+<div id="tab-nosotros" class="tab-content">
+            <div class="container-seccion">
+                <div class="block-box">
+                    <h4>Sobre CEDAIPIS México Business School</h4>
+                    <p>Somos una institución dedicada a la formación académica flexible de alta calidad, combinando tecnología de vanguardia y contenidos estructurados para el éxito profesional.</p>
+                </div>
+
+                <div class="block-box">
+                    <h4>Mision y vision</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde inventore laudantium molestiae doloremque doloribus minus quia natus, nisi eius minima vitae dicta blanditiis architecto esse. Harum eaque porro provident accusamus?</p>
+                </div>
+
+                <div class="block-box">
+                    <h4>Conoce a nuestro equipo</h4>
+                    <!-- Tarjeta de perfil con CSS en línea -->
+                    <div class="cuerpo_tarjeta">
+                        <!-- Imagen Lado Izquierdo -->
+                        <div class="imagen_tarjeta">
+                            <img src="placeholdear.jpg" alt="Fotografía del equipo">
+                        </div>
+                        <!-- Información Lado Derecho -->
+                        <div class="info_tarjeta">
+                            <h5 class="nombre_persona">Alejandro Juarez Garcia</h5>
+                            <h6 class="ocupacion_persona">Ingeniería en Sistemas / Desarrollo Web</h6>
+                            <p class="descripcion_persona">
+                                Encargado de diseñar e implementar las interfaces y componentes web del campus virtual. Apasionado por la optimización de código y la creación de experiencias fluidas que faciliten el aprendizaje de los estudiantes en la plataforma.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB BLOG -->
+        <div id="tab-blog" class="tab-content">
+            <div class="container-seccion">
+                <div class="block-box">
+                    <h4>Blog Académico & Novedades</h4>
+                    <p>Descubre artículos sobre educación a distancia, habilidades digitales y tendencias tecnológicas.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-shield-cat"></i>
+                <span>CEDAIPIS México - Centro Educativo y Tecnológico</span>
+            </div>
+
+            <div>
+                <strong>Contacto:</strong> cedalp@cedlipis.com | +498 302 058 2382
+            </div>
+
+            <div>
+                <strong>Sitio link:</strong>
+                <a href="#" onclick="cambiarTab('inicio')" style="color: inherit; margin: 0 5px;">Inicio</a> |
+                <a href="#" onclick="cambiarTab('oferta')" style="color: inherit; margin: 0 5px;">Oferta Educativa</a> |
+                <a href="#" onclick="cambiarTab('nosotros')" style="color: inherit; margin: 0 5px;">Nosotros</a> |
+                <a href="#" onclick="cambiarTab('blog')" style="color: inherit; margin: 0 5px;">Blog</a>
+            </div>
+
+            <div class="footer-socials">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-youtube"></i>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE NAVEGACIÓN -->
+    <script>
+        function cambiarTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('activo'));
+
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => link.classList.remove('activo'));
+
+            const selectedTab = document.getElementById('tab-' + tabId);
+            if (selectedTab) {
+                selectedTab.classList.add('activo');
+            }
+
+            const selectedLink = document.getElementById('link-' + tabId);
+            if (selectedLink) {
+                selectedLink.classList.add('activo');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
